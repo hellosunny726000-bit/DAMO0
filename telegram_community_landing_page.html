@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAX_BHAI_07 - Official Telegram Community</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#080d19',
+                        cardBg: '#101828',
+                        cardBorder: '#1f2d47',
+                        telegramBlue: '#0088cc',
+                        telegramGlow: '#00A8E8',
+                        accentGreen: '#10B981'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #060a12;
+            color: #f3f4f6;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .avatar-glow {
+            box-shadow: 0 0 25px 8px rgba(0, 168, 232, 0.45), 0 0 50px 15px rgba(234, 179, 8, 0.25);
+        }
+
+        .cta-glow {
+            box-shadow: 0 0 30px rgba(0, 150, 255, 0.5), 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .cta-glow:hover {
+            box-shadow: 0 0 45px rgba(0, 170, 255, 0.8), 0 6px 20px rgba(0, 0, 0, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .glass-card {
+            background: linear-gradient(135deg, rgba(16, 24, 40, 0.85) 0%, rgba(12, 19, 32, 0.95) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+        }
+
+        .glass-pill {
+            background: rgba(16, 24, 40, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.02); }
+        }
+
+        .pulse-animation {
+            animation: pulseGlow 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-start pb-28 text-slate-100 selection:bg-cyan-500 selection:text-white">
+
+    <header class="w-full bg-slate-900/90 border-b border-slate-800 py-2 px-4 sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-md mx-auto flex items-center justify-between gap-2 text-xs">
+            <div class="flex items-center gap-1.5 text-slate-400">
+                <i class="fa-solid fa-link text-cyan-400"></i>
+                <span>Telegram Link:</span>
+            </div>
+            <div class="flex items-center gap-2 flex-1 max-w-[240px]">
+                <input type="text" id="telegramUrlInput" value="https://t.me/your_channel_name" class="w-full bg-slate-950 text-cyan-300 border border-slate-700 rounded px-2 py-1 text-xs focus:outline-none focus:border-cyan-500 truncate" title="Edit your Telegram Link here">
+            </div>
+            <button onclick="updateTelegramLink()" class="bg-cyan-600 hover:bg-cyan-500 text-white px-2.5 py-1 rounded text-xs font-semibold transition">Save</button>
+        </div>
+    </header>
+
+    <main class="w-full max-w-md px-4 pt-6 flex flex-col items-center text-center relative z-10">
+        
+        <div class="w-full flex items-center justify-between mb-8 text-xs font-medium">
+            <div class="glass-pill border-emerald-500/40 text-emerald-400 px-3.5 py-1.5 rounded-full flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                <span>Official Telegram Community</span>
+            </div>
+            <div class="text-emerald-400 flex items-center gap-1.5 bg-emerald-950/30 px-3 py-1.5 rounded-full border border-emerald-500/30">
+                <i class="fa-solid fa-shield-halved text-xs"></i>
+                <span class="font-semibold">Verified</span>
+            </div>
+        </div>
+
+        <div class="relative mb-6 group cursor-pointer" onclick="openTelegram()">
+            <div class="w-32 h-32 rounded-full p-1 bg-gradient-to-tr from-cyan-500 via-yellow-400 to-blue-600 avatar-glow pulse-animation">
+                <div class="w-full h-full rounded-full overflow-hidden border-2 border-slate-950 relative bg-slate-900">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400" 
+                         alt="Anushka Profile" 
+                         class="w-full h-full object-cover"
+                         onerror="this.onerror=null; this.src='https://placehold.co/300x300/0f172a/38bdf8?text=Anushka';">
+                </div>
+            </div>
+            <div class="absolute -bottom-2 bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-950 px-3 py-0.5 rounded-full font-black text-[10px] tracking-wider uppercase border border-yellow-200 shadow-lg">
+                <i class="fa-solid fa-crown mr-1"></i> Owner
+            </div>
+        </div>
+
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-2 uppercase flex items-center justify-center gap-2">
+            PROFIT WITH ANUSHKA <span class="text-2xl">💰</span>
+        </h1>
+        <p class="text-cyan-300/90 text-sm font-medium mb-6 leading-relaxed max-w-xs">
+            Daily Pattern Analysis & Smart Game Strategy Tips
+        </p>
+
+        <div class="w-full glass-card border-slate-800 rounded-xl py-3 px-4 mb-4 flex items-center justify-center gap-2 text-slate-200 text-sm font-medium shadow-inner">
+            <span class="text-amber-500 text-base animate-pulse">🔥</span>
+            <span id="liveCounter" class="font-bold text-white">1,482</span>
+            <span class="text-slate-400">members online right now</span>
+        </div>
+
+        <div class="w-full space-y-3 mb-6 text-left">
+            <div class="glass-pill rounded-xl p-3.5 flex items-center gap-3 text-xs sm:text-sm font-medium text-slate-200 border-slate-800/80">
+                <div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-check text-xs"></i>
+                </div>
+                <span>Free Daily Color & Trend Analysis Updates</span>
+            </div>
+
+            <div class="glass-pill rounded-xl p-3.5 flex items-center gap-3 text-xs sm:text-sm font-medium text-slate-200 border-slate-800/80">
+                <div class="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-bolt text-xs"></i>
+                </div>
+                <span>Real-Time Game Signals & Pattern Timings</span>
+            </div>
+
+            <div class="glass-pill rounded-xl p-3.5 flex items-center gap-3 text-xs sm:text-sm font-medium text-slate-200 border-slate-800/80">
+                <div class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-graduation-cap text-xs"></i>
+                </div>
+                <span>100% Beginner Friendly Learning & Strategy</span>
+            </div>
+        </div>
+
+        <a href="https://t.me/+03f8itPTM_FhMzE1" target="_blank" id="heroCtaBtn" class="w-full bg-gradient-to-r from-sky-500 via-blue-600 to-cyan-500 text-white rounded-2xl py-4 px-6 font-bold text-base sm:text-lg flex items-center justify-between cta-glow mb-2 group">
+            <div class="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center">
+                <i class="fa-brands fa-telegram text-2xl text-white"></i>
+            </div>
+            <span class="tracking-wide">JOIN TELEGRAM CHANNEL FREE</span>
+            <i class="fa-solid fa-arrow-right text-lg group-hover:translate-x-1 transition-transform"></i>
+        </a>
+
+        <div class="flex items-center justify-center gap-1.5 text-[11px] text-slate-400 mb-8">
+            <i class="fa-solid fa-lock text-[10px] text-slate-500"></i>
+            <span>Free Access • No Subscription Required</span>
+        </div>
+
+        <div class="flex flex-col items-center gap-1 text-slate-500 text-xs mb-12 animate-bounce">
+            <span>Scroll for strategy details</span>
+            <i class="fa-solid fa-chevron-down text-cyan-400 text-xs"></i>
+        </div>
+
+        <section class="w-full text-left mb-12">
+            <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2 justify-center text-center">
+                <i class="fa-solid fa-star text-amber-400"></i> Why Join Our Community?
+            </h2>
+
+            <div class="grid grid-cols-2 gap-3">
+                <div class="glass-card p-4 rounded-xl flex flex-col items-start gap-2 border-slate-800">
+                    <div class="w-8 h-8 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-1">
+                        <i class="fa-solid fa-chart-line text-sm"></i>
+                    </div>
+                    <h3 class="text-sm font-bold text-white">Daily Trends</h3>
+                    <p class="text-[11px] text-slate-400 leading-relaxed">Accurate pattern study and color insights.</p>
+                </div>
+
+                <div class="glass-card p-4 rounded-xl flex flex-col items-start gap-2 border-slate-800">
+                    <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-1">
+                        <i class="fa-solid fa-users text-sm"></i>
+                    </div>
+                    <h3 class="text-sm font-bold text-white">25,000+ Members</h3>
+                    <p class="text-[11px] text-slate-400 leading-relaxed">Active community sharing strategy tips.</p>
+                </div>
+
+                <div class="glass-card p-4 rounded-xl flex flex-col items-start gap-2 border-slate-800">
+                    <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center mb-1">
+                        <i class="fa-solid fa-lightbulb text-sm"></i>
+                    </div>
+                    <h3 class="text-sm font-bold text-white">Smart Risk Tips</h3>
+                    <p class="text-[11px] text-slate-400 leading-relaxed">Learn disciplined gameplay management.</p>
+                </div>
+
+                <div class="glass-card p-4 rounded-xl flex flex-col items-start gap-2 border-slate-800">
+                    <div class="w-8 h-8 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center mb-1">
+                        <i class="fa-solid fa-headset text-sm"></i>
+                    </div>
+                    <h3 class="text-sm font-bold text-white">24/7 Updates</h3>
+                    <p class="text-[11px] text-slate-400 leading-relaxed">Continuous game pattern notifications.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="w-full text-left mb-12">
+            <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2 justify-center text-center">
+                <i class="fa-solid fa-comments text-cyan-400"></i> Community Feedback
+            </h2>
+
+            <div class="space-y-3">
+                <div class="glass-card p-4 rounded-xl border-slate-800">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-bold text-cyan-300">Rahul K.</span>
+                        <div class="text-amber-400 text-[10px] space-x-0.5">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-300 italic leading-relaxed">
+                        "Anushka ma'am's pattern guides are very clear and easy to follow. Helped me understand game timings!"
+                    </p>
+                </div>
+
+                <div class="glass-card p-4 rounded-xl border-slate-800">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-bold text-cyan-300">Priya S.</span>
+                        <div class="text-amber-400 text-[10px] space-x-0.5">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-300 italic leading-relaxed">
+                        "Best free Telegram group for daily prediction updates and risk control strategies."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="w-full text-left mb-8">
+            <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2 justify-center text-center">
+                <i class="fa-solid fa-circle-question text-emerald-400"></i> Frequently Asked Questions
+            </h2>
+
+            <div class="space-y-3">
+                <div class="glass-card rounded-xl border-slate-800 overflow-hidden">
+                    <button onclick="toggleFaq(1)" class="w-full p-4 text-left flex items-center justify-between text-xs font-semibold text-white focus:outline-none">
+                        <span>Is joining the Telegram group free?</span>
+                        <i id="faqIcon-1" class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                    </button>
+                    <div id="faqContent-1" class="hidden px-4 pb-4 text-xs text-slate-400 border-t border-slate-800/60 pt-2 leading-relaxed">
+                        Yes, joining the channel is 100% free. We share daily educational updates and smart tips without charging any fees.
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-xl border-slate-800 overflow-hidden">
+                    <button onclick="toggleFaq(2)" class="w-full p-4 text-left flex items-center justify-between text-xs font-semibold text-white focus:outline-none">
+                        <span>How do I get real-time strategy updates?</span>
+                        <i id="faqIcon-2" class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                    </button>
+                    <div id="faqContent-2" class="hidden px-4 pb-4 text-xs text-slate-400 border-t border-slate-800/60 pt-2 leading-relaxed">
+                        Simply click on any "JOIN TELEGRAM CHANNEL" button on this page. Make sure notifications are turned on inside Telegram!
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div class="fixed bottom-0 left-0 right-0 p-3 bg-slate-950/90 border-t border-slate-800 backdrop-blur-lg z-40 flex justify-center">
+        <a href="https://t.me/your_channel_name" target="_blank" id="stickyCtaBtn" class="w-full max-w-md bg-gradient-to-r from-sky-500 to-blue-600 text-white rounded-xl py-3 px-5 font-bold text-sm flex items-center justify-center gap-3 shadow-lg hover:brightness-110 active:scale-[0.98] transition">
+            <i class="fa-brands fa-telegram text-xl"></i>
+            <span>JOIN TELEGRAM CHANNEL NOW</span>
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+    </div>
+
+    <script>
+        // FAQ Accordion Toggle
+        function toggleFaq(id) {
+            const content = document.getElementById(`faqContent-${id}`);
+            const icon = document.getElementById(`faqIcon-${id}`);
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Live Online Counter Fluctuation Effect
+        function simulateLiveUsers() {
+            const counter = document.getElementById('liveCounter');
+            let current = 1482;
+            setInterval(() => {
+                const change = Math.floor(Math.random() * 11) - 5; // -5 to +5
+                current = Math.max(1400, current + change);
+                counter.innerText = current.toLocaleString();
+            }, 3500);
+        }
+
+        // Update Telegram links globally across the page
+        function updateTelegramLink() {
+            const inputVal = document.getElementById('telegramUrlInput').value.trim();
+            if (!inputVal) return;
+
+            let formattedUrl = inputVal;
+            if (!formattedUrl.startsWith('http://') && !formattedUrl.startsWith('https://')) {
+                formattedUrl = 'https://' + formattedUrl;
+            }
+
+            document.getElementById('heroCtaBtn').href = formattedUrl;
+            document.getElementById('stickyCtaBtn').href = formattedUrl;
+
+            // Flash visual confirmation
+            const btn = event.target;
+            const originalText = btn.innerText;
+            btn.innerText = "Updated!";
+            btn.classList.replace('bg-cyan-600', 'bg-emerald-600');
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.classList.replace('bg-emerald-600', 'bg-cyan-600');
+            }, 1500);
+        }
+
+        function openTelegram() {
+            const targetUrl = document.getElementById('heroCtaBtn').href;
+            window.open(targetUrl, '_blank');
+        }
+
+        window.onload = function() {
+            simulateLiveUsers();
+        };
+    </script>
+</body>
+</html>
